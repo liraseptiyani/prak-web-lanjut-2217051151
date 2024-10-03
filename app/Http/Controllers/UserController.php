@@ -5,47 +5,52 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kelas;
 use App\Models\UserModel;
-use App\Http\Requests\UserControllerRequest;
-
 
 class UserController extends Controller
 {
-    public function create()
+    public $userModel;
+    public $kelasModel;
+
+
+    public function __construct()
     {
-
-        return view('create_user', [
-            'kelas' => Kelas::all(),
-        ]);
-        return view('create_user');
-
+        $this->userModel = new UserModel();
+        $this->kelasModel = new Kelas();
     }
 
-    public function store(Request $request)
-    {
+    public function index()
+{
+    $data = [
+        'title' => 'List User',
+        'users' => $this->userModel->getUser(),
+    ];
 
-        $validatedData = $request->validate([
-            'nama' => 'required|string|max:255',
-            'npm' => 'required|string|max:255',
-            'kelas_id' => 'required|exists:kelas,id',
-        ]);
+    return view('list_user', $data);
+}
 
-        $user = UserModel::create($validatedData);
 
-        $user->load('kelas');
+public function create(){
+    $kelasModel = new Kelas();
 
-        return view('profile', [
-            'nama' => $user->nama,
-            'npm' => $user->npm,
-            'nama_kelas' => $user->kelas->nama_kelas ?? 'Kelas tidak ditemukan',
-        ]);
+    // Mengambil data kelas menggunakan method getKelas
+    $kelas = $kelasModel->getKelas();
 
-        $data = [
-            'nama' => $request->input('nama'),
-            'kelas' => $request->input('kelas'),
-            'npm' => $request->input('npm'),
-        ];
+    $data = [
+        'title' => 'Create User',
+        'kelas' => $kelas,
+    ];
 
-        return view('profile', $data);
+    return view('create_user', $data);
+}
 
-    }
+public function store(Request $request)
+{
+    $this->userModel->create([
+        'nama' => $request->input('nama'),
+        'npm' => $request->input('npm'),
+        'kelas_id' => $request->input('kelas_id'),
+    ]);
+
+    return redirect()->to('/user');
+}
 }
