@@ -105,31 +105,30 @@
     <div class="card">
         <img src="https://i.pinimg.com/564x/11/8c/c8/118cc81c633316f14688da16832f90b3.jpg" alt="Foto Profil">
         <div class="form-container">
-            <form action="{{ route('user.store') }}" method="POST">
-                @csrf
-                <label for="nama">Nama:</label>
-                <input type="text" id="nama" name="nama">
-                @foreach($errors->get('nama') as $msg)
-                <p class="text-danger">{{ $msg }}</p>
-                @endforeach
+        <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
+        @csrf
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama"><br>
 
-                <label for="npm">NPM:</label>
-                <input type="text" id="npm" name="npm">
-                @foreach($errors->get('npm') as $msg)
-                <p class="text-danger">{{ $msg }}</p>
-                @endforeach
+        <label for="npm">NPM : </label>
+        <input type="text" id="npm" name="npm"><br>
 
-                <label for="kelas">Kelas:</label>
-                <select name="kelas_id" id="kelas_id">
-                    @foreach ($kelas as $kelasItem)
-                    <option value="{{ $kelasItem->id }}">{{ $kelasItem->nama_kelas }}</option>
-                    @endforeach
-                </select>
+        <label for="kelas">Kelas :</label>
+        <select name="kelas_id" id="kelas_id">
+            @foreach ($kelas as $kelasItem)
+            <option value="{{ $kelasItem->id }}">{{ $kelasItem->nama_kelas }}</option>
+            @endforeach
+        </select><br>
+        <label for="foto">Foto : </label>
+        <input type="file" id="foto" name="foto" accept="image/*"><br><br>
+        @foreach($errors->get('foto') as $msg)
+        <p class="text-danger">{{ $msg }}</p>
+        @endforeach
 
-                <input type="submit" value="Submit">
-            </form>
-        </div>
-    </div>
-</body>
+        <button type="submit">Submit</button>
+    </form>
+
+</div>
 @endsection
+</body>
 </html>

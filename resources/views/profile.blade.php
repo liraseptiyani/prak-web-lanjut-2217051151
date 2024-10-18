@@ -58,15 +58,21 @@
 </head>
 <body>
     <div class="profile-container">
-        <img class="profile-img" src="https://i.pinimg.com/564x/11/8c/c8/118cc81c633316f14688da16832f90b3.jpg" alt="Foto Profil">
+   
+    @if ($user->foto)
+                    <img src="{{ asset('assets/upload/img/'. $user->foto) }}" alt="Profile Image" class="profile-img img-fluid">
+                @else
+                    <img src="{{ asset('assets/img/profile.png') }}" alt="Default Profile Image" class="profile-img img-fluid">
+                @endif
+    <h1>Profil User</h1>
         <div class="info-box">
-            Lira Septiyani
+            <p class="value">{{$user->nama }}</p>
         </div>
         <div class="info-box">
-            A
+            <p class="value">{{ $user->npm }}</p>
         </div>
         <div class="info-box">
-            2217051151
+        <p class="value">{{ $nama_kelas ?? 'Kelas tidak ditemukan' }}</p> <!-- Proper width for class -->
         </div>
     </div>
 </body>
