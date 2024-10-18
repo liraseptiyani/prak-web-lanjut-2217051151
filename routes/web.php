@@ -19,13 +19,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/profile/{nama}/{kelas}/{npm}', [ProfileController::class, 'profile']);
+
 
 Route::get('/user/profile', [UserController::class,'profile']);
 
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
 
 Route::post('/user/store', [UserController::class,'store'])->name('user.store');
+
 
 Route::get('/', [UserController::class, 'index'])->name('user.list');
 

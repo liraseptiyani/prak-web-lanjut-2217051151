@@ -105,6 +105,7 @@
     <div class="card">
         <img src="https://i.pinimg.com/564x/11/8c/c8/118cc81c633316f14688da16832f90b3.jpg" alt="Foto Profil">
         <div class="form-container">
+
         <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <label for="nama">Nama:</label>
@@ -129,6 +130,7 @@
     </form>
 
 </div>
+
 @endsection
 </body>
 </html>

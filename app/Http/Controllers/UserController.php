@@ -43,6 +43,7 @@ public function create(){
     return view('create_user', $data);
 }
 
+
 public function store(Request $request)
 {
     $request->validate([
@@ -125,5 +126,25 @@ public function show($id){
         'nama_kelas' => $kelas ? $kelas->nama_kelas : null, // Pastikan nama kelas ada, jika tidak tampilkan null
     ]);
 
+
 }
+// Menyimpan data ke database termasuk path foto
+$this->userModel->create([
+'nama' => $request->input('nama'),
+'npm' => $request->input('npm'),
+'kelas_id' => $request->input('kelas_id'),
+'foto' => $fotoPath, // Menyimpan path foto
+]);
+return redirect()->to('/user')->with('success', 'User
+berhasil ditambahkan');
 }
+public function show($id){
+    $user = $this->userModel->getUser($id);
+
+    $data = [
+        'title' => 'Profile',
+        'user' => $user,
+    ];
+
+    return view('profile', $data);
+}}
