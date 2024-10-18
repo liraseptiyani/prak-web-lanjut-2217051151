@@ -4,11 +4,7 @@
 <style>
     body {
         background-color: #f5f5dc; /* Warna cream */
-        height: 100vh;
         margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         font-family: 'Poppins', sans-serif; /* Menggunakan font Poppins */
     }
 
@@ -31,9 +27,15 @@
         align-items: center;
     }
 
+    .table-wrapper {
+        max-height: 70vh; /* Batasi tinggi tabel agar bisa di-scroll */
+        overflow-y: auto; /* Tabel bisa di-scroll jika tinggi lebih besar dari batas */
+    }
+
     .table {
         background-color: #fffaf0; /* Warna latar belakang tabel (cream lebih terang) */
         border: 1px solid #f5deb3; /* Warna border tabel */
+        width: 100%;
     }
 
     thead th {
@@ -71,13 +73,12 @@
     <div class="row">
         <div class="col-12 d-flex justify-content-start mb-3 mt-2">
             <a href="{{ route('user.create') }}" class="btn btn-success">
-                <i class="fas fa-plus"></i> Tambah User
-            </a>
+                <i class="fas fa-plus"></i> Tambah User</a>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-12">
+        <div class="col-12 table-wrapper">
             <table class="table table-hover">
                 <thead>
                     <tr>
@@ -95,6 +96,8 @@
                         <td>{{ $user->nama }}</td>
                         <td>{{ $user->npm }}</td>
                         <td>{{ $user->nama_kelas }}</td>
+                        <td><a href="{{route('users.show',$user->id)}}" class="btn btn-warning mb-3">Detail</a></td>
+                        <td><button class="btn btn-primary">Aksi</button></td>
                     </tr>
                     @endforeach
                 </tbody>

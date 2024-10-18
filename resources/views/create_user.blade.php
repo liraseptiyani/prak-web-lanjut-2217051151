@@ -105,8 +105,8 @@
     <div class="card">
         <img src="https://i.pinimg.com/564x/11/8c/c8/118cc81c633316f14688da16832f90b3.jpg" alt="Foto Profil">
         <div class="form-container">
-            <form action="{{ route('user.store') }}" method="POST">
-                @csrf
+            <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf 
                 <label for="nama">Nama:</label>
                 <input type="text" id="nama" name="nama">
                 @foreach($errors->get('nama') as $msg)
@@ -125,6 +125,10 @@
                     <option value="{{ $kelasItem->id }}">{{ $kelasItem->nama_kelas }}</option>
                     @endforeach
                 </select>
+                
+                <label for="foto">foto</label><br>
+                <input type="file" id="foto" name="foto"><br><br>
+                <label for="foto">foto:</label><br>
 
                 <input type="submit" value="Submit">
             </form>

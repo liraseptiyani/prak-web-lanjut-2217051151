@@ -20,10 +20,10 @@
             background-color: #fff5e1; /* Background cream muda untuk kotak profil */
             padding: 40px; 
             border-radius: 20px; /* Membuat sudut kotak lebih melengkung */
-            max-width: 400px; /* Atur lebar maksimal */
+            max-width: 500px; /* Atur lebar maksimal */
             width: 100%; 
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Meningkatkan shadow */
-            text-align: center;
+            text-align: center; /* Membuat konten di dalam kontainer berpusat */
             transition: transform 0.3s ease-in-out; /* Animasi pada kotak profil */
         }
         .profile-container:hover {
@@ -41,32 +41,42 @@
             transform: scale(1.1); /* Efek zoom in pada gambar saat hover */
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Menambahkan shadow pada gambar saat hover */
         }
-        .info-box {
-            background-color: #e0b88e; /* Warna cream tua untuk kotak info */
-            color: white; /* Warna teks putih */
-            border-radius: 50px; /* Membuat sudut menjadi lonjong */
-            padding: 15px 0; /* Jarak vertikal dalam kotak */
-            margin-bottom: 15px; /* Jarak antar kotak */
-            font-size: 1.2rem; /* Mengatur ukuran teks agar lebih besar */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Menambahkan shadow pada kotak info */
-            transition: background-color 0.3s ease-in-out; /* Animasi pada warna kotak */
+        .info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px; /* Jarak antar form input */
         }
-        .info-box:hover {
-            background-color: #d4a373; /* Mengubah warna saat kotak info di-hover */
+        .label {
+            font-weight: bold; /* Mencetak tebal label */
+            margin-right: 10px; /* Memberikan jarak antara label dan value */
+            width: 100px; /* Lebar tetap untuk label agar sejajar */
+            text-align: left; /* Rata kiri untuk label */
+        }
+        .value {
+            flex: 1; /* Membuat value mengambil sisa ruang */
+            text-align: left; /* Rata kiri untuk value */
+            background-color: #f0f0f0; /* Warna latar belakang untuk value */
+            padding: 5px 10px; /* Padding dalam value */
+            border-radius: 5px; /* Membuat sudut value melengkung */
         }
     </style>
 </head>
 <body>
     <div class="profile-container">
-        <img class="profile-img" src="https://i.pinimg.com/564x/11/8c/c8/118cc81c633316f14688da16832f90b3.jpg" alt="Foto Profil">
-        <div class="info-box">
-            Lira Septiyani
+        <img class="profile-img" src="../{{ $user->foto }}" alt="Foto Profil">
+        <h1>Profil User</h1>
+
+        <div class="info">
+            <p class="label">Nama:</p>
+            <p class="value">{{ $user->nama }}</p>
         </div>
-        <div class="info-box">
-            A
+        <div class="info">
+            <p class="label">NPM:</p>
+            <p class="value">{{ $user->npm }}</p>
         </div>
-        <div class="info-box">
-            2217051151
+        <div class="info">
+            <p class="label">Kelas:</p>
+            <p class="value">{{ $user->nama_kelas ?? 'Kelas Tidak Ditemukan' }}</p>
         </div>
     </div>
 </body>
