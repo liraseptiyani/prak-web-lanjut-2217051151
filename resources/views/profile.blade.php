@@ -63,20 +63,22 @@
 </head>
 <body>
     <div class="profile-container">
-        <img class="profile-img" src="../{{ $user->foto }}" alt="Foto Profil">
-        <h1>Profil User</h1>
-
-        <div class="info">
-            <p class="label">Nama:</p>
-            <p class="value">{{ $user->nama }}</p>
+   
+    @if ($user->foto)
+                    <img src="{{ asset('assets/upload/img/'. $user->foto) }}" alt="Profile Image" class="profile-img img-fluid">
+                @else
+                    <img src="{{ asset('assets/img/profile.png') }}" alt="Default Profile Image" class="profile-img img-fluid">
+                @endif
+    <h1>Profil User</h1>
+        <div class="info-box">
+            <p class="value">{{$user->nama }}</p>
         </div>
-        <div class="info">
-            <p class="label">NPM:</p>
+        <div class="info-box">
             <p class="value">{{ $user->npm }}</p>
         </div>
-        <div class="info">
-            <p class="label">Kelas:</p>
-            <p class="value">{{ $user->nama_kelas ?? 'Kelas Tidak Ditemukan' }}</p>
+        <div class="info-box">
+        <p class="value">{{ $nama_kelas ?? 'Kelas tidak ditemukan' }}</p> <!-- Proper width for class -->
+
         </div>
     </div>
 </body>
